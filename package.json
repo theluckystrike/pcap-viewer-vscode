@@ -1,5 +1,5 @@
 {
-  "name": "pcap-viewer",
+  "name": "zovo-pcap-viewer",
   "displayName": "PCAP Viewer & PCAPNG Viewer (Packet Capture Analyzer)",
   "description": "PCAP viewer and PCAPNG viewer for VS Code: a packet capture analyzer with a packet list, protocol tree and linked hex pane, display filters, follow TCP stream, conversations and endpoints. Opens .pcap.gz and 1 GB captures. Pure JS, nothing to install (no Wireshark or sharkd). Free, no sign-in, works offline.",
   "version": "0.1.0",

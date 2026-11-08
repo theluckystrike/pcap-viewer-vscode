@@ -9,7 +9,7 @@ const { registerSupport, commandUris, showLinks } = require('./support');
 
 const VIEW_CAP = 'pcapViewer.capture';   // default for .pcap, .pcapng and their .gz forms
 const VIEW_ANY = 'pcapViewer.any';       // "Open With" for .cap, .dmp and any other file
-const EXT_ID = 'zovo.pcap-viewer';
+const EXT_ID = 'zovo.zovo-pcap-viewer';
 let rating = { success() {}, failure() {} };
 
 function settings() {

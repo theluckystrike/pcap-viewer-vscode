@@ -23,7 +23,7 @@ const FUNDING_LABELS = {
 };
 
 // This extension's Marketplace id. The footer's "Rate" link opens its review page; nothing asks for a rating.
-const SELF_ID = "zovo.pcap-viewer";
+const SELF_ID = "zovo.zovo-pcap-viewer";
 
 // [id, name, one line]. Live ones are on the Marketplace. Queued ones are not there yet: they open GitHub.
 const LIVE = [
@@ -175,13 +175,13 @@ const LIVE = [
 ];
 const QUEUED = [
   [
-    "zovo.geo-map-viewer",
+    "zovo.zovo-geo-map-viewer",
     "GeoJSON Viewer, KML Viewer & GPX Viewer (Map Preview, Shapefile)",
     "geoJSON viewer, KML viewer and GPX viewer with a map preview in VS Code. Also opens shapefiles (SHP, zipped), KMZ, TopoJSON, WKT and CSV with lat/lon: feature table, properties, GPX distance and elevation profile, reprojection from .prj, PNG export. Free, no sign-in, works offline.",
     "https://github.com/theluckystrike/geo-map-viewer-vscode"
   ],
   [
-    "zovo.hex-viewer",
+    "zovo.zovo-hex-viewer",
     "Hex Viewer & Binary Viewer, Hex Editor (Large Files)",
     "hex viewer, binary viewer and hex editor for VS Code that opens files of any size (4 GB and more) in under a second. Go to offset, find hex or text, copy as C array, Python bytes or base64, a data inspector, and byte editing with undo. Free, no sign-in, works offline.",
     "https://github.com/theluckystrike/hex-viewer-vscode"
@@ -193,19 +193,19 @@ const QUEUED = [
     "https://github.com/theluckystrike/mermaid-viewer-vscode"
   ],
   [
-    "zovo.pcap-viewer",
+    "zovo.zovo-pcap-viewer",
     "PCAP Viewer & PCAPNG Viewer (Packet Capture Analyzer)",
     "pCAP viewer and PCAPNG viewer for VS Code: a packet capture analyzer with a packet list, protocol tree and linked hex pane, display filters, follow TCP stream, conversations and endpoints. Opens .pcap.gz and 1 GB captures. Pure JS, nothing to install (no Wireshark or sharkd). Free, no sign-in, works offline.",
     "https://github.com/theluckystrike/pcap-viewer-vscode"
   ],
   [
-    "zovo.svg-viewer",
+    "zovo.zovo-svg-viewer",
     "SVG Viewer & SVG Preview (Zoom, PNG Export)",
     "sVG viewer and SVG preview for VS Code: live preview beside the editor, zoom at the cursor and pan, viewBox outline, checkerboard or custom background, sprite sheet grid for <symbol>, .svgz, and PNG export at 1x to 8x. Scripts never run. Free, offline.",
     "https://github.com/theluckystrike/svg-viewer-vscode"
   ],
   [
-    "zovo.vcd-waveform-viewer",
+    "zovo.zovo-vcd-waveform-viewer",
     "VCD Viewer & Waveform Viewer (Verilog, No Signal Limit)",
     "vCD viewer and waveform viewer for Verilog, SystemVerilog and VHDL simulations. Free with no signal limit: signal tree with search, cursor and two markers, bus grouping, hex, binary, signed and ASCII radix, and VCD files of 1 GB and more. A GTKWave-style viewer inside VS Code that works offline.",
     "https://github.com/theluckystrike/vcd-viewer-vscode"
