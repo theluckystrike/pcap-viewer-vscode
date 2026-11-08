@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <rect x="8" y="8" width="240" height="240" rx="40" fill="#10202E"/>
+  <rect x="8" y="8" width="240" height="240" rx="40" fill="none" stroke="#2C4C66" stroke-width="4"/>
+  <g>
+    <rect x="36" y="44" width="184" height="22" rx="4" fill="#3794FF" opacity="0.35"/>
+    <rect x="36" y="74" width="184" height="22" rx="4" fill="#89D185" opacity="0.40"/>
+    <rect x="36" y="104" width="184" height="22" rx="4" fill="#C586C0" opacity="0.45"/>
+    <rect x="36" y="104" width="184" height="22" rx="4" fill="none" stroke="#FFD166" stroke-width="4"/>
+    <rect x="44" y="51" width="28" height="8" rx="2" fill="#CFE6FF"/><rect x="82" y="51" width="64" height="8" rx="2" fill="#CFE6FF"/><rect x="156" y="51" width="52" height="8" rx="2" fill="#CFE6FF"/>
+    <rect x="44" y="81" width="28" height="8" rx="2" fill="#E3F5E1"/><rect x="82" y="81" width="64" height="8" rx="2" fill="#E3F5E1"/><rect x="156" y="81" width="52" height="8" rx="2" fill="#E3F5E1"/>
+    <rect x="44" y="111" width="28" height="8" rx="2" fill="#FFFFFF"/><rect x="82" y="111" width="64" height="8" rx="2" fill="#FFFFFF"/><rect x="156" y="111" width="52" height="8" rx="2" fill="#FFFFFF"/>
+  </g>
+  <polyline points="36,186 70,186 86,150 106,214 126,162 142,196 156,186 220,186" fill="none" stroke="#4FC1FF" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/>
+  <g font-family="Menlo, DejaVu Sans Mono, monospace" font-weight="700" font-size="20" fill="#9CDCFE">
+    <text x="128" y="232" text-anchor="middle">PCAP</text>
+  </g>
+</svg>

@@ -1,0 +1,349 @@
+{
+  "name": "pcap-viewer",
+  "displayName": "PCAP Viewer & PCAPNG Viewer (Packet Capture Analyzer)",
+  "description": "PCAP viewer and PCAPNG viewer for VS Code: a packet capture analyzer with a packet list, protocol tree and linked hex pane, display filters, follow TCP stream, conversations and endpoints. Opens .pcap.gz and 1 GB captures. Pure JS, nothing to install (no Wireshark or sharkd). Free, no sign-in, works offline.",
+  "version": "0.1.0",
+  "publisher": "zovo",
+  "license": "MIT",
+  "icon": "icon.png",
+  "galleryBanner": {
+    "color": "#10202E",
+    "theme": "dark"
+  },
+  "engines": {
+    "vscode": "^1.90.0",
+    "node": ">=18"
+  },
+  "categories": [
+    "Visualization",
+    "Debuggers",
+    "Other"
+  ],
+  "keywords": [
+    "pcap",
+    "pcapng",
+    "pcap viewer",
+    "packet capture",
+    "wireshark",
+    "tcpdump",
+    "network",
+    "packet analyzer",
+    "tcp stream",
+    "dns",
+    "http",
+    "tls",
+    "offline",
+    "cap"
+  ],
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onCustomEditor:pcapViewer.capture",
+    "onCustomEditor:pcapViewer.any",
+    "onCommand:pcapViewer.openWith",
+    "onCommand:pcapViewer.openWalkthrough"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    },
+    "virtualWorkspaces": true
+  },
+  "contributes": {
+    "customEditors": [
+      {
+        "viewType": "pcapViewer.capture",
+        "displayName": "PCAP Viewer",
+        "selector": [
+          {
+            "filenamePattern": "*.pcap"
+          },
+          {
+            "filenamePattern": "*.pcapng"
+          },
+          {
+            "filenamePattern": "*.pcap.gz"
+          },
+          {
+            "filenamePattern": "*.pcapng.gz"
+          },
+          {
+            "filenamePattern": "*.ntar"
+          }
+        ],
+        "priority": "default"
+      },
+      {
+        "viewType": "pcapViewer.any",
+        "displayName": "PCAP Viewer (any file)",
+        "selector": [
+          {
+            "filenamePattern": "*.cap"
+          },
+          {
+            "filenamePattern": "*.dmp"
+          },
+          {
+            "filenamePattern": "*.gz"
+          },
+          {
+            "filenamePattern": "*"
+          }
+        ],
+        "priority": "option"
+      }
+    ],
+    "commands": [
+      {
+        "command": "pcapViewer.openWith",
+        "title": "Open in PCAP Viewer",
+        "category": "PCAP Viewer",
+        "icon": "$(pulse)"
+      },
+      {
+        "command": "pcapViewer.focusFilter",
+        "title": "Display Filter",
+        "category": "PCAP Viewer"
+      },
+      {
+        "command": "pcapViewer.followStream",
+        "title": "Follow TCP/UDP Stream",
+        "category": "PCAP Viewer"
+      },
+      {
+        "command": "pcapViewer.statistics",
+        "title": "Statistics (Conversations, Endpoints, Protocols)",
+        "category": "PCAP Viewer"
+      },
+      {
+        "command": "pcapViewer.exportSelected",
+        "title": "Export Selected Packets as pcap",
+        "category": "PCAP Viewer"
+      },
+      {
+        "command": "pcapViewer.goToPacket",
+        "title": "Go to Packet",
+        "category": "PCAP Viewer"
+      },
+      {
+        "command": "pcapViewer.openWalkthrough",
+        "title": "Get Started",
+        "category": "PCAP Viewer"
+      },
+      {
+        "command": "pcapViewer.supportDeveloper",
+        "title": "Support the developer",
+        "category": "PCAP Viewer"
+      },
+      {
+        "command": "pcapViewer.moreViewers",
+        "title": "More free viewers",
+        "category": "PCAP Viewer"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "pcapViewer.goToPacket",
+        "key": "ctrl+g",
+        "mac": "cmd+g",
+        "when": "activeCustomEditorId =~ /^pcapViewer\\./"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "pcapViewer.openWith",
+          "when": "resourceExtname =~ /^\\.(pcap|pcapng|cap|gz|ntar|dmp)$/",
+          "group": "navigation@21"
+        }
+      ],
+      "editor/title/context": [
+        {
+          "command": "pcapViewer.openWith",
+          "when": "resourceScheme != untitled && !(activeCustomEditorId =~ /^pcapViewer\\./)",
+          "group": "1_open@21"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "pcapViewer.focusFilter",
+          "when": "activeCustomEditorId =~ /^pcapViewer\\./"
+        },
+        {
+          "command": "pcapViewer.followStream",
+          "when": "activeCustomEditorId =~ /^pcapViewer\\./"
+        },
+        {
+          "command": "pcapViewer.statistics",
+          "when": "activeCustomEditorId =~ /^pcapViewer\\./"
+        },
+        {
+          "command": "pcapViewer.exportSelected",
+          "when": "activeCustomEditorId =~ /^pcapViewer\\./"
+        },
+        {
+          "command": "pcapViewer.goToPacket",
+          "when": "activeCustomEditorId =~ /^pcapViewer\\./"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "PCAP Viewer",
+      "properties": {
+        "pcapViewer.timeFormat": {
+          "type": "string",
+          "enum": [
+            "relative",
+            "delta",
+            "utc",
+            "local"
+          ],
+          "enumDescriptions": [
+            "Seconds since the first packet.",
+            "Seconds since the previous packet shown.",
+            "Date and time in UTC.",
+            "Date and time in the local time zone."
+          ],
+          "default": "relative",
+          "description": "Time column format when a capture opens. The toolbar changes it per tab."
+        },
+        "pcapViewer.resolveNames": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show host names in the Source and Destination columns. Names come only from the capture itself (DNS answers in its packets and pcapng name blocks). Nothing is looked up on the network."
+        },
+        "pcapViewer.savedFilters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "filter": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "filter"
+            ]
+          },
+          "default": [
+            {
+              "name": "Web (HTTP and TLS)",
+              "filter": "http || tls"
+            },
+            {
+              "name": "DNS",
+              "filter": "dns"
+            },
+            {
+              "name": "TCP handshakes",
+              "filter": "tcp.flags.syn == 1"
+            },
+            {
+              "name": "Not ARP, not DNS",
+              "filter": "!arp && !dns"
+            },
+            {
+              "name": "Malformed packets",
+              "filter": "_ws.malformed"
+            }
+          ],
+          "description": "Display filters in the star menu of the filter bar. The star menu can also save the current filter here."
+        },
+        "pcapViewer.maxGzipMB": {
+          "type": "number",
+          "default": 512,
+          "minimum": 1,
+          "maximum": 8192,
+          "description": "Largest size a .gz capture may unpack to, in MB. A gzip bomb or a huge file stops at this size and the packets in that part are shown."
+        },
+        "pcapViewer.maxRemoteMB": {
+          "type": "number",
+          "default": 256,
+          "minimum": 1,
+          "maximum": 4096,
+          "description": "Largest file to open from a remote or virtual file system. Local files of any size open, because they are read in ranges."
+        },
+        "pcapViewer.askForRating": {
+          "type": "boolean",
+          "default": true,
+          "description": "Ask one time for a Marketplace rating after you have used PCAP Viewer on a few files over at least 2 days. You can answer \"Later\" or \"No thanks\". Nothing is sent anywhere."
+        },
+        "pcapViewer.showSupportLinks": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the small Sponsor and More free viewers links under the viewer. The change shows in files you open next. Nothing is sent anywhere."
+        }
+      }
+    },
+    "walkthroughs": [
+      {
+        "id": "pcapViewer.start",
+        "title": "Get started with PCAP Viewer",
+        "description": "Read packet captures in VS Code without Wireshark.",
+        "steps": [
+          {
+            "id": "open",
+            "title": "Open a capture",
+            "description": "Click any .pcap, .pcapng, .pcap.gz or .pcapng.gz file. For .cap and other names, right-click the file and pick \"Open in PCAP Viewer\".\n[Pick a capture to open](command:pcapViewer.openWith)",
+            "media": {
+              "image": "images/pcap-viewer-http.png",
+              "altText": "An HTTP capture in PCAP Viewer with the packet list, the protocol tree and the hex pane."
+            },
+            "completionEvents": [
+              "onCommand:pcapViewer.openWith"
+            ]
+          },
+          {
+            "id": "filter",
+            "title": "Filter packets",
+            "description": "Type a display filter such as tcp.port == 443 && ip.addr == 10.0.0.1 and press Enter. The box turns green when the filter is valid. The star menu keeps filters you use often.",
+            "media": {
+              "markdown": "walkthrough/filter.md"
+            }
+          },
+          {
+            "id": "follow",
+            "title": "Follow a stream and see the bytes",
+            "description": "Double-click a TCP or UDP packet to read its whole conversation. Click a field in the tree to light up its bytes, or click a byte to find its field.",
+            "media": {
+              "markdown": "walkthrough/follow.md"
+            }
+          },
+          {
+            "id": "settings",
+            "title": "Time format, names and saved filters",
+            "description": "Pick the time format, turn capture names on or off and edit saved filters.\n[Open settings](command:workbench.action.openSettings?%5B%22pcapViewer%22%5D)",
+            "media": {
+              "markdown": "walkthrough/settings.md"
+            },
+            "completionEvents": [
+              "onCommand:workbench.action.openSettings"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "scripts": {
+    "build": "node scripts/build.js --production",
+    "test": "node scripts/build.js --production && node --test \"test/*.test.js\"",
+    "package": "npm run build && npx -y @vscode/vsce package --no-dependencies -o dist/"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2",
+    "@types/vscode": "~1.90.0"
+  },
+  "homepage": "https://github.com/theluckystrike/pcap-viewer-vscode#readme",
+  "bugs": {
+    "url": "https://github.com/theluckystrike/pcap-viewer-vscode/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/theluckystrike/pcap-viewer-vscode"
+  },
+  "sponsor": {
+    "url": "https://github.com/sponsors/theluckystrike"
+  }
+}

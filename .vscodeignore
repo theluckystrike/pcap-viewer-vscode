@@ -1,0 +1,15 @@
+src/**
+test/**
+scripts/**
+samples/**
+node_modules/**
+e2e-tmp/**
+**/*.map
+icon.svg
+.gitignore
+dist/*.vsix
+*.vsix
+package-lock.json
+.github/**
+images/*
+!images/pcap-viewer-http.png
